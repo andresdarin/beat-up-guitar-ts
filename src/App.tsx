@@ -1,9 +1,9 @@
 
 import { Guitar } from './components/Guitar.js'
-import Header from './components/Header.js'
 import { Footer } from './components/Footer.js'
 import { useCart } from './hooks/useCart.js'
-import { useState } from 'react'
+import { Header } from './components/Header.js'
+
 
 function App() {
 
@@ -30,7 +30,6 @@ function App() {
             <Guitar
               key={guitar.id}
               guitar={guitar}
-              cart={cart}
               handleAddToCart={handleAddToCart}
             />
           ))}

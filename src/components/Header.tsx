@@ -1,6 +1,6 @@
-import { useCart } from "../hooks/useCart";
+import type { HeaderProps } from "../types/Header";
 
-export default function Header({ cart, handleRemoveFromCart, handleIncreaseQuantity, handleDecreaseQuantity, clearCart, isEmpty, cartTotal }) {
+export const Header = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, handleDecreaseQuantity, clearCart, isEmpty, cartTotal }: HeaderProps) => {
 
     return (
         <header className="py-5 header">

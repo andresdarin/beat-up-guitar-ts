@@ -1,11 +1,9 @@
-import React from 'react'
 
-export const Guitar = ({ guitar, handleAddToCart }) => {
+import type { GuitarProps, Guitar as guitarType } from '../types/Guitar'
 
-    const { id, name, description, image, price } = guitar
+export const Guitar = ({ guitar, handleAddToCart }: GuitarProps) => {
 
-
-
+    const { name, description, image, price } = guitar
 
     return (
         <div className="col-md-6 col-lg-4 my-4 row align-items-center">
