@@ -1,3 +1,5 @@
+import type { CartActions } from "../reducers/cart-reducer"
+
 export type CartItem = {
     id: number
     name: string
@@ -8,10 +10,5 @@ export type CartItem = {
 
 export type HeaderProps = {
     cart: CartItem[]
-    handleRemoveFromCart: (id: number) => void
-    handleIncreaseQuantity: (id: number) => void
-    handleDecreaseQuantity: (id: number) => void
-    clearCart: () => void
-    isEmpty: boolean
-    cartTotal: number
+    dispatch: (action: CartActions) => void
 }

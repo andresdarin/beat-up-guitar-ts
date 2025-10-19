@@ -1,3 +1,5 @@
+import type { Dispatch } from "react";
+import type { CartActions } from "../reducers/cart-reducer";
 
 type Guitar = {
     id: number;
@@ -13,7 +15,7 @@ type GuitarItem = Guitar & {
 
 type GuitarProps = {
     guitar: Guitar;
-    handleAddToCart: (item: Guitar) => void;
+    dispatch: Dispatch<CartActions>;
 }
 
 export type { Guitar, GuitarProps, GuitarItem };

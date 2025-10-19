@@ -1,6 +1,13 @@
+import { useMemo, type FC } from "react";
 import type { HeaderProps } from "../types/Header";
 
-export const Header = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, handleDecreaseQuantity, clearCart, isEmpty, cartTotal }: HeaderProps) => {
+
+export const Header: FC<HeaderProps> = ({
+    cart,
+    dispatch }: HeaderProps) => {
+
+    const isEmpty = useMemo(() => cart.length === 0, [cart]);
+    const cartTotal = useMemo(() => cart.reduce((total, item) => total + (item.quantity * item.price), 0), [cart]);
 
     return (
         <header className="py-5 header">
@@ -50,15 +57,15 @@ export const Header = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, han
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-dark"
-                                                                onClick={() => handleDecreaseQuantity(item.id)}
+                                                                onClick={() => dispatch({ type: 'DECREASE_QUANTITY', payload: { id: item.id } })}
                                                             >
                                                                 -
                                                             </button>
-                                                            1
+                                                            {item.quantity}
                                                             <button
                                                                 type="button"
                                                                 className="btn btn-dark"
-                                                                onClick={() => handleIncreaseQuantity(item.id)}
+                                                                onClick={() => dispatch({ type: 'INCREASE_QUANTITY', payload: { id: item.id } })}
                                                             >
                                                                 +
                                                             </button>
@@ -67,7 +74,7 @@ export const Header = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, han
                                                             <button
                                                                 className="btn btn-danger"
                                                                 type="button"
-                                                                onClick={() => handleRemoveFromCart(item.id)}
+                                                                onClick={() => dispatch({ type: 'REMOVE_FROM_CART', payload: { id: item.id } })}
                                                             >
                                                                 X
                                                             </button>
@@ -81,7 +88,7 @@ export const Header = ({ cart, handleRemoveFromCart, handleIncreaseQuantity, han
                                     </>
                                 )}
 
-                                <button className="btn btn-dark w-100 mt-3 p-2" onClick={clearCart}>Vaciar Carrito</button>
+                                <button className="btn btn-dark w-100 mt-3 p-2" onClick={() => dispatch({ type: 'CLEAR_CART' })}>Vaciar Carrito</button>
                             </div>
                         </div>
                     </nav>
